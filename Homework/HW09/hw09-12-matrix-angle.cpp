@@ -42,3 +42,73 @@
             7 5 3 0
             2 1 3 1
 */
+
+#include <stdio.h>
+
+int main() {
+
+    int n ;
+    printf ( "Input cube size : \n" ) ;
+    scanf ( "%d", &n ) ;
+    int leftmatrix[ n ] [ n ] ;
+
+    // สร้างลูกบาศ
+    int cube[ n ] [ n ] ;
+    for ( int i = 0 ; i < n ; i++ ) {
+        for ( int k = 0 ; k < n ; k++ ) {
+            scanf ( "%d", &cube[ i ] [ k ] ) ;
+        } // end for
+    } // end for
+
+    // สร้างทางเลือก
+    int choise ;
+    printf ( "Show zero (1=Left, -1=Right) :\n" ) ;
+    scanf ( "%d", &choise ) ;
+    
+
+    // แสดงค่า
+    printf ( "Matrix =\n" ) ;
+    for ( int i = 0 ; i < n ; i++ ) {
+        for ( int k = 0 ; k < n ; k++ ) {
+            printf ( "%d", cube[ i ] [ k ] ) ;
+            leftmatrix[ i ] [ k ] = cube[ i ] [ k ] ;
+            if ( k + 1 < n ) {
+                printf ( " " ) ;
+            } // end if
+        } // end for
+        printf ( "\n" ) ;
+    } // end for
+
+    // ทำทางเลือก
+    switch ( choise ) {
+            case 1 :
+                for ( int i = n , j = 0 ; i > 0 ; i--, j++ ) {
+                    for ( int k = 0 ; k < n - j ; k++ ) {
+                        leftmatrix[ i ] [ k ] = 0 ;
+                    } // end for
+                } // end for
+                break ;
+            case -1 :
+                for ( int i = 0 ; i < n ; i++ ) {
+                    for ( int k = n - 1 ; k  >  i ; k-- ) {
+                        leftmatrix[ i ] [ k ] = 0 ;
+                    } // end for
+                } // end for
+                break ;
+            default :
+                break ;
+            } // end swith
+
+    printf ( "Left Matrix =\n" ) ;
+    for ( int i = 0 ; i < n ; i++ ) {
+        for ( int k = 0 ; k < n ; k++ ) {
+            printf ( "%d", leftmatrix[ i ] [ k ] ) ;
+            if ( k + 1 < n ) {
+                printf ( " " ) ;
+            } // end if
+        } // end for
+        printf ( "\n" ) ;
+    } // end for
+
+    return 0 ;
+} // main
